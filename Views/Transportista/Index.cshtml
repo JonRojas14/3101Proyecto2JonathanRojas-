@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TestProyecto2.Models.Transportistas> //establece sobre que modelo se esta trabajando
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container"> <!--Construccion de la vista con bootstrap que viene instalado por defecto en asp.net core MMVC-->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Transportistas</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="RegistrarTransportista" asp-controller="TransportistaController">Agregar Transportista</a>
+        </div>
+
+    </div>
+
+    <div class="row">
+            @if (Model.Count() > 0) //comprueba si hay registros
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <!--m es una expresion lambda-->
+                            <td>@Html.DisplayNameFor(m => m.Código)</td>
+                            <td>@Html.DisplayNameFor(m => m.NombreEmpresa)</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Código</td>
+                                <td>@item.NombreEmpresa</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else 
+            {
+                <p>No existen datos</p>
+            }
+        </div>
+
+</div>

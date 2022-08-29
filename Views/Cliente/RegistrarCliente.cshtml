@@ -1,0 +1,82 @@
+﻿@model TestProyecto2.Models.Clientes 
+
+@{
+    ViewData["Title"] = "Registrar Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container"> <!--Contenedor del formulario para crear un nuevo registro de edificio-->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Agregar Cliente</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="RegistrarCliente">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="form-group">
+                   <label asp-for="CodigoCliente" class="control-label" ></label>
+                   <input asp-for="CodigoCliente" class="form-control" id = "txt_usrid" />
+                   <span asp-validation-for="CodigoCliente" class="text-danger"></span>
+                </div>
+
+                 <div class="form-group">
+                   <label asp-for="NombreCLiente" class="control-label" ></label>
+                   <input asp-for="NombreCLiente" class="form-control" />
+                   <span asp-validation-for="NombreCLiente" class="text-danger"></span>
+                </div>  
+
+                <div class="form-group">
+                   <label asp-for="Identificacion" class="control-label" ></label>
+                   <input asp-for="Identificacion" class="form-control" />
+                   <span asp-validation-for="Identificacion" class="text-danger"></span>
+                </div>  
+
+                <div class="form-group input-group-sm">    
+                    @Html.LabelFor(model => model.FechaNacimiento)   
+                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new {@class="datepicker"}})  
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento) 
+                </div> 
+
+
+                <div class="form-group">
+                    <input type="submit" value="Registrar Cliente" class="btn btn-primary" />
+                </div>
+
+            </form>
+        </div> 
+    </div>
+
+</div>
+
+<link href="~/Content/themes/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var codigos;
+
+    codigos = Math.floor(Math.random() * 99999); 
+
+    window.onload = function () {
+                document.getElementById("txt_usrid").value = codigos;
+    }
+    
+</script>
+
+@section Scripts{ <!--toma las validaciones del lado cliente-->
+
+    @{ <partial name="_ValidationScriptsPartial" />}
+
+    <script src="~/Content/themes/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+}
+

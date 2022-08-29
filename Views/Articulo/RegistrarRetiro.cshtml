@@ -1,0 +1,92 @@
+﻿@model TestProyecto2.Models.ArticulosRetirados
+
+@{
+    ViewData["Title"] = "Retirar Articulo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container"> <!--Contenedor del formulario para crear un nuevo registro de edificio-->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Retirar Articulo</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="RegistrarRetiro">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="form-group">
+                   <label asp-for="CodigoTransportista" class="control-label" ></label>
+                   <span asp-validation-for="CodigoTransportista" class="text-danger"></span>
+                   <select asp-for="CodigoTransportista" asp-items="@Model.CodigoTransportistaReporteRetiro" >
+                            <option >Por favor seleccione un codigo de transportista</option> 
+                   </select>
+                </div>
+
+                 <div class="form-group">
+                   <label asp-for="TrackingId" class="control-label" ></label>
+                   <span asp-validation-for="TrackingId" class="text-danger"></span>
+                   <select asp-for="TrackingId" asp-items="@Model.TrackingIdArticulosRetiro" >
+                            <option >Por favor seleccione el tracking ID del articulo a retirar</option> 
+                   </select>
+                </div>  
+
+                <div class="form-group">
+                   <label asp-for="Descripcion" class="control-label" ></label>
+                   <input asp-for="Descripcion" class="form-control" />
+                   <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>  
+
+                <div class="form-group">
+                   <label asp-for="CodigoCliente" class="control-label" ></label>
+                   <span asp-validation-for="CodigoCliente" class="text-danger"></span>
+                    <select asp-for="CodigoCliente" asp-items="@Model.CodigoClienteReporteRetiro" >
+                            <option >Por favor seleccione un codigo de transportista</option> 
+                   </select>
+                </div> 
+
+                <div class="form-group">
+                   @Html.LabelFor(model => model.FechaRetiro)   
+                    @Html.EditorFor(model => model.FechaRetiro, new { htmlAttributes = new {@class="datepicker"}})  
+                    @Html.ValidationMessageFor(model => model.FechaRetiro) 
+                </div> 
+
+                <div class="form-group">
+                    <input type="submit" value="Registrar Cliente" class="btn btn-primary" />
+                </div>
+
+            </form>
+        </div> 
+    </div>
+
+</div>
+
+<link href="~/Content/themes/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var codigos;
+
+    codigos = Math.floor(Math.random() * 99999); 
+
+    window.onload = function () {
+                document.getElementById("txt_usrid").value = codigos;
+    }
+    
+</script>
+
+@section Scripts{ <!--toma las validaciones del lado cliente-->
+
+    @{ <partial name="_ValidationScriptsPartial" />}
+
+    <script src="~/Content/themes/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+}

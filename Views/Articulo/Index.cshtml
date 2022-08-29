@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TestProyecto2.Models.ArticulosCustodia> //establece sobre que modelo se esta trabajando
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container"> <!--Construccion de la vista con bootstrap que viene instalado por defecto en asp.net core MMVC-->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Articulos Almacenados</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Desea agregar otro articulo?</h4>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="RegistrarIngreso" asp-controller="Articulo">Ingresar Nuevo Articulo</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Desea volver a la pantalla principal?</h4>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-danger d-block" asp-action="Index" asp-controller="Home">Pantalla Princiapl</a>
+        </div>
+    </div>
+
+    <div class="row">
+            @if (Model.Count() > 0) //comprueba si hay registros
+            {
+                <table class="table table-bordered table-striped"> <!-- Gridview para mostrar registros -->
+                    <thead>
+                        <tr>
+                            <!--m es una expresion lambda-->
+                            <td>@Html.DisplayNameFor(m => m.Id)</td>
+                            <td>@Html.DisplayNameFor(m => m.CodigoCliente)</td>
+                            <td>@Html.DisplayNameFor(m => m.CodigoTransportista)</td>
+                            <td>@Html.DisplayNameFor(m => m.TrackingId)</td>
+                            <td>@Html.DisplayNameFor(m => m.Descripcion)</td>
+                            <td>@Html.DisplayNameFor(m => m.Peso)</td>
+                            <td>@Html.DisplayNameFor(m => m.Precio)</td>
+                            <td>@Html.DisplayNameFor(m => m.FechaIngreso)</td>
+                            <td>@Html.DisplayNameFor(m => m.Estado)</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.CodigoCliente</td>
+                                <td>@item.CodigoTransportista</td>
+                                <td>@item.TrackingId</td>
+                                <td>@item.Descripcion</td>
+                                <td>@item.Peso</td>
+                                <td>@item.Precio</td>
+                                <td>@item.FechaIngreso</td>
+                                <td>@item.Estado</td>
+                                <td>
+                                    <a asp-controller="Articulo" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar Estado de articulo</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else 
+            {
+                <p>No existen datos</p>
+            }
+        </div>
+
+</div>
