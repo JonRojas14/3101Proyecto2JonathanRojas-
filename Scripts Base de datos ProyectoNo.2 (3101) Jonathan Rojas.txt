@@ -1,0 +1,73 @@
+USE [Proyecto2Jonathan]
+GO
+/****** Object:  Table [dbo].[ArticuloCustodia]    
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ArticuloCustodia](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CodigoTransportista] [int] NOT NULL,
+	[TrackingId] [nvarchar](30) NOT NULL,
+	[Descripcion] [nvarchar](100) NOT NULL,
+	[Peso] [decimal](18, 2) NOT NULL,
+	[Precio] [decimal](18, 2) NOT NULL,
+	[CodigoCliente] [int] NOT NULL,
+	[FechaIngreso] [datetime2](7) NOT NULL,
+	[Estado] [nvarchar](max) NULL,
+ CONSTRAINT [PK_ArticuloCustodia] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ArticuloRetirado]    
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ArticuloRetirado](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CodigoTransportista] [int] NOT NULL,
+	[TrackingId] [nvarchar](30) NOT NULL,
+	[Descripcion] [nvarchar](100) NOT NULL,
+	[CodigoCliente] [int] NOT NULL,
+	[FechaRetiro] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_ArticuloRetirado] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cliente]    
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CodigoCliente] [int] NOT NULL,
+	[NombreCLiente] [nvarchar](30) NOT NULL,
+	[Identificacion] [int] NOT NULL,
+	[FechaNacimiento] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Transportista]    
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Transportista](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Código] [int] NOT NULL,
+	[NombreEmpresa] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_Transportista] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
